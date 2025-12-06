@@ -88,24 +88,47 @@ body {
   height: 60px;
   width: auto;
   object-fit: contain;
-  /* Remove white background - multiple techniques */
-  mix-blend-mode: multiply;
   background: transparent;
+  /* Use multiply blend mode to remove white background - blends white with page background */
+  mix-blend-mode: multiply;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  /* Smooth rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
-/* Force remove white background from logo image */
+/* Force transparent background on logo container */
+.logo-link {
+  display: inline-block;
+  background: transparent;
+  padding: 0;
+}
+
 .logo-link img {
   background: transparent !important;
-  /* Additional filter to help with white background removal */
-  image-rendering: -webkit-optimize-contrast;
+  /* Multiply blend mode makes white transparent/blend with background */
+  mix-blend-mode: multiply;
 }
 
-/* Alternative approach: if logo still has white, use darken blend */
+/* Alternative: Use screen blend for very light backgrounds */
 @media (prefers-color-scheme: light) {
   .brand-logo {
-    mix-blend-mode: darken;
+    /* Try screen mode which inverts the blend - good for removing white on colored backgrounds */
+    mix-blend-mode: screen;
+    filter: 
+      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+      brightness(0.9)
+      contrast(1.15);
   }
+}
+
+/* For gradient backgrounds, multiply works best */
+body .brand-logo {
+  mix-blend-mode: multiply;
+  filter: 
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))
+    brightness(1.02)
+    contrast(1.08);
 }
 
 /* Header Actions (Cart) */
@@ -1098,5 +1121,283 @@ input[type="email"]:focus {
   .cart-item-total {
     grid-column: 1 / -1;
     margin-top: 1rem;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: var(--white);
+  margin: 5% auto;
+  padding: 0;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: var(--shadow-xl);
+  animation: slideDown 0.3s ease;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: var(--text-light);
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-dark);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  padding: 2rem 2rem 1rem 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.modal-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.modal-food-info {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.modal-food-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+}
+
+.modal-food-details {
+  flex: 1;
+}
+
+.modal-description {
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.modal-price {
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.modal-price strong {
+  font-size: 1.5rem;
+}
+
+.modal-quantity {
+  padding: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.modal-quantity label {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 200px;
+}
+
+.qty-btn-modal {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #e0e0e0;
+  background: var(--white);
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn-modal:hover {
+  border-color: var(--accent-color);
+  background: rgba(255, 107, 53, 0.1);
+  transform: scale(1.1);
+}
+
+#modal-quantity-input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  font-family: inherit;
+}
+
+#modal-quantity-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.modal-total {
+  padding: 1.5rem 2rem;
+  background: var(--bg-light);
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.modal-total p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: right;
+}
+
+.modal-total strong {
+  color: var(--accent-color);
+  font-size: 1.75rem;
+}
+
+.modal-actions {
+  padding: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-modal-add-cart,
+.btn-modal-order {
+  flex: 1;
+  padding: 1.25rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  min-width: 150px;
+}
+
+.btn-modal-add-cart {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+}
+
+.btn-modal-add-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.btn-modal-order {
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5a);
+  color: var(--white);
+}
+
+.btn-modal-order:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #ff8c5a, var(--accent-color));
+}
+
+/* Close modal when clicking outside */
+.modal-content {
+  pointer-events: auto;
+}
+
+.modal {
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    max-height: 85vh;
+  }
+
+  .modal-food-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .modal-food-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .btn-modal-add-cart,
+  .btn-modal-order {
+    width: 100%;
   }
 }
