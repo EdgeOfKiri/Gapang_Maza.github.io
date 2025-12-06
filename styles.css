@@ -401,7 +401,7 @@ article {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 24px;
-  padding: 0;
+  padding: 3rem;
   box-shadow: var(--shadow-xl);
   margin-top: 2rem;
   overflow: hidden;
@@ -414,21 +414,21 @@ article .listing-photo {
   object-fit: cover;
   border-radius: 20px;
   float: right;
-  margin: 3rem 3rem 2rem 2rem;
+  margin: 0 0 2rem 2rem;
   box-shadow: var(--shadow-lg);
 }
 
 .listing-description {
-  margin: 3rem 0 2rem 3rem;
+  margin: 0;
   padding: 0;
-  clear: right;
+  width: calc(55% - 2rem);
 }
 
 .listing-description .listing-heading {
   font-size: 3.5rem;
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   padding-top: 0;
   color: var(--text-dark);
   line-height: 1.2;
@@ -448,8 +448,9 @@ article .listing-photo {
 }
 
 .listing-features {
-  margin: 3rem 3rem 3rem 3rem;
-  clear: both;
+  margin: 2rem 0;
+  clear: right;
+  width: calc(55% - 2rem);
 }
 
 .listing-features > .section-heading {
@@ -505,10 +506,11 @@ article .listing-photo {
 }
 
 .listing-apply {
-  margin: 3rem;
-  padding-top: 3rem;
+  margin: 2rem 0 0 0;
+  padding-top: 2rem;
   border-top: 2px solid #e0e0e0;
-  clear: both;
+  clear: right;
+  width: calc(55% - 2rem);
 }
 
 .listing-apply .section-heading {
@@ -578,10 +580,11 @@ input[type="email"]:focus {
 
 /* Order Button Styles */
 .order-section {
-  margin: 3rem 3rem 0 3rem;
+  margin: 2rem 0 0 0;
   padding-top: 2rem;
   border-top: 2px solid #e0e0e0;
-  clear: both;
+  clear: right;
+  width: calc(55% - 2rem);
 }
 
 .order-buttons {
@@ -650,6 +653,10 @@ input[type="email"]:focus {
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
+  article {
+    padding: 0;
+  }
+
   article .listing-photo {
     width: 100%;
     height: 400px;
@@ -659,18 +666,23 @@ input[type="email"]:focus {
   }
 
   .listing-description {
-    margin: 2rem 2rem 1.5rem 2rem;
+    width: 100%;
+    margin: 2rem;
+    padding: 0;
   }
 
   .listing-features {
+    width: 100%;
     margin: 2rem;
   }
 
   .order-section {
+    width: 100%;
     margin: 2rem;
   }
 
   .listing-apply {
+    width: 100%;
     margin: 2rem;
   }
 
