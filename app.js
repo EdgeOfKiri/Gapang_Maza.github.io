@@ -116,7 +116,13 @@ const Router = {
       const id = hash.split('/details/')[1];
       this.renderDetails(content, id);
     } else {
-      content.innerHTML = '<h1>Page Not Found</h1>';
+      content.innerHTML = `
+        <article style="text-align: center; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.95); border-radius: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);">
+          <h1 style="font-size: 3rem; color: #2d3436; margin-bottom: 1rem;">404</h1>
+          <p style="font-size: 1.2rem; color: #636e72; margin-bottom: 2rem;">Page not found</p>
+          <a href="#/" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #ff6b35, #ff8c5a); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">Go back home</a>
+        </article>
+      `;
     }
   },
 
@@ -124,9 +130,9 @@ const Router = {
     let filteredFoodsList = FoodingService.getAllPhFoods();
 
     container.innerHTML = `
-      <section>
+      <section class="search-section">
         <form id="filter-form">
-          <input type="text" id="filter-input" placeholder="Filter by category" />
+          <input type="text" id="filter-input" placeholder="Search by category (e.g., Filipino Dish, Dessert, Pulutan)" />
           <button class="primary" type="button" id="search-btn">Search</button>
         </form>
       </section>
@@ -179,7 +185,13 @@ const Router = {
     const phFoods = FoodingService.getPhFoodsById(id);
 
     if (!phFoods) {
-      container.innerHTML = '<h1>Food not found</h1><a href="#/">Go back home</a>';
+      container.innerHTML = `
+        <article style="text-align: center; padding: 4rem 2rem;">
+          <h1 style="font-size: 3rem; color: var(--text-dark); margin-bottom: 1rem;">Food Not Found</h1>
+          <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem;">The food item you're looking for doesn't exist.</p>
+          <a href="#/" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent-color), #ff8c5a); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; box-shadow: var(--shadow-md);">Go back home</a>
+        </article>
+      `;
       return;
     }
 
