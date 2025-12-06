@@ -325,7 +325,7 @@ const Router = {
           <h2 class="section-heading">Order Now</h2>
           <p style="color: var(--text-light); margin-bottom: 1.5rem;">Ready to order? Choose an option below:</p>
           <div class="order-buttons">
-            <button class="btn-order" onclick="Router.handleOrder(${phFoods.id})">🛒 Order Now</button>
+            <button class="btn-order" onclick="Router.showOrderModal(${phFoods.id})">🛒 Order Now</button>
             <button class="btn-add-cart" onclick="Router.handleAddToCart(${phFoods.id})">➕ Add to Cart (Qty: 1)</button>
             <a href="#/" class="btn-back">← Back to Menu</a>
           </div>
@@ -371,18 +371,110 @@ const Router = {
     });
   },
 
-  handleOrder(id) {
+  showOrderModal(id) {
     const food = FoodingService.getPhFoodsById(id);
-    if (food) {
-      const quantity = prompt(`How many ${food.name} would you like to order?`, '1');
-      if (quantity && parseInt(quantity) > 0) {
-        const qty = parseInt(quantity);
-        CartService.addItem(food, qty);
-        const total = food.price * qty;
-        alert(`✅ Added to cart!\n\nItem: ${food.name}\nQuantity: ${qty}\nPrice per item: ₱${food.price.toFixed(2)}\nTotal: ₱${total.toFixed(2)}\n\nGo to cart to checkout.`);
-        window.location.hash = '#/cart';
-      }
+    if (!food) return;
+
+    const modal = document.getElementById('order-modal');
+    const modalBody = document.getElementById('modal-body');
+    
+    modalBody.innerHTML = `
+      <div class="modal-header">
+        <h2>Order ${food.name}</h2>
+        <p class="modal-subtitle">${food.category}</p>
+      </div>
+      <div class="modal-food-info">
+        <img src="${food.photo}" alt="${food.name}" class="modal-food-image" />
+        <div class="modal-food-details">
+          <p class="modal-description">${food.description}</p>
+          <p class="modal-price">Price: <strong>₱${food.price.toFixed(2)}</strong> each</p>
+        </div>
+      </div>
+      <div class="modal-quantity">
+        <label for="modal-quantity-input">Quantity:</label>
+        <div class="quantity-controls">
+          <button class="qty-btn-modal" onclick="Router.decreaseModalQuantity()">-</button>
+          <input type="number" id="modal-quantity-input" value="1" min="1" max="99" />
+          <button class="qty-btn-modal" onclick="Router.increaseModalQuantity()">+</button>
+        </div>
+      </div>
+      <div class="modal-total">
+        <p>Subtotal: <strong id="modal-subtotal">₱${food.price.toFixed(2)}</strong></p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-modal-add-cart" onclick="Router.addToCartFromModal(${food.id})">➕ Add to Cart</button>
+        <button class="btn-modal-order" onclick="Router.orderFromModal(${food.id})">🛒 Order Now</button>
+      </div>
+    `;
+
+    modal.style.display = 'block';
+    this.currentModalFood = food;
+    this.updateModalTotal();
+    
+    // Update total when quantity changes
+    const qtyInput = document.getElementById('modal-quantity-input');
+    qtyInput.addEventListener('input', () => this.updateModalTotal());
+    qtyInput.addEventListener('change', () => this.updateModalTotal());
+  },
+
+  closeOrderModal() {
+    const modal = document.getElementById('order-modal');
+    modal.style.display = 'none';
+    this.currentModalFood = null;
+  },
+
+  increaseModalQuantity() {
+    const qtyInput = document.getElementById('modal-quantity-input');
+    const currentQty = parseInt(qtyInput.value) || 1;
+    qtyInput.value = Math.min(currentQty + 1, 99);
+    this.updateModalTotal();
+  },
+
+  decreaseModalQuantity() {
+    const qtyInput = document.getElementById('modal-quantity-input');
+    const currentQty = parseInt(qtyInput.value) || 1;
+    qtyInput.value = Math.max(currentQty - 1, 1);
+    this.updateModalTotal();
+  },
+
+  updateModalTotal() {
+    if (!this.currentModalFood) return;
+    const qtyInput = document.getElementById('modal-quantity-input');
+    const quantity = parseInt(qtyInput.value) || 1;
+    const total = this.currentModalFood.price * quantity;
+    const subtotalEl = document.getElementById('modal-subtotal');
+    if (subtotalEl) {
+      subtotalEl.textContent = `₱${total.toFixed(2)}`;
     }
+  },
+
+  addToCartFromModal(id) {
+    const food = FoodingService.getPhFoodsById(id);
+    if (!food) return;
+    
+    const qtyInput = document.getElementById('modal-quantity-input');
+    const quantity = parseInt(qtyInput.value) || 1;
+    
+    CartService.addItem(food, quantity);
+    this.closeOrderModal();
+    alert(`✅ ${food.name} (${quantity}x) added to cart!\nTotal: ₱${(food.price * quantity).toFixed(2)}\n\nView your cart to checkout.`);
+  },
+
+  orderFromModal(id) {
+    const food = FoodingService.getPhFoodsById(id);
+    if (!food) return;
+    
+    const qtyInput = document.getElementById('modal-quantity-input');
+    const quantity = parseInt(qtyInput.value) || 1;
+    
+    CartService.addItem(food, quantity);
+    this.closeOrderModal();
+    window.location.hash = '#/cart';
+  },
+
+  handleOrder(id) {
+    // Keep this for backward compatibility, but use modal instead
+    this.showOrderModal(id);
   },
 
   handleAddToCart(id) {
@@ -623,5 +715,21 @@ const Router = {
 document.addEventListener('DOMContentLoaded', () => {
   CartService.loadCart();
   Router.init();
+  
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('order-modal');
+    if (event.target === modal) {
+      Router.closeOrderModal();
+    }
+  };
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      Router.closeOrderModal();
+    }
+  });
 });
+
 
