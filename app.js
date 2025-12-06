@@ -1,251 +1,678 @@
-// Food data service
-const FoodingService = {
-  phFoodsList: [
-    {
-      "id": 0,
-      "name": "Adobo",
-      "category": "Filipino Dish",
-      "price": 999.00,
-      "photo": "public/foods/adobo.jpg",
-      "description": "Tender chicken simmered in soy sauce, vinegar, garlic, and peppercorns—classic Filipino comfort food. Known for its rich, savory aroma and perfect balance of salty and tangy flavors, Adobo is a dish that instantly reminds Filipinos of home. Slow cooking allows the flavors to deepen, creating a warm and comforting meal enjoyed during family gatherings. Each region and household has its own version, making Adobo not just a dish but a cultural symbol of Filipino identity passed down through generations."
-    },
-    {
-      "id": 1,
-      "name": "Bicol Express",
-      "category": "Filipino Dish",
-      "price": 90.00,
-      "photo": "public/foods/bicol-express.jpg",
-      "description": "A spicy and creamy dish made with pork, chilies, and coconut milk, inspired by the vibrant flavors of the Bicol region. The heat from siling labuyo blends smoothly with the richness of coconut milk, creating a bold flavor profile that spice lovers adore. Every bite is packed with warmth and excitement, showcasing the adventurous cooking style of Bicolanos. This dish reflects the region's identity—fiery, flavorful, and unforgettable."
-    },
-    {
-      "id": 2,
-      "name": "Chicharon",
-      "category": "Pulutan",
-      "price": 100.00,
-      "photo": "public/foods/chicharon.jpg",
-      "description": "Crispy deep-fried pork rinds, perfect as a snack or pulutan with sawsawan. Known for its addictive crunch, Chicharon is enjoyed everywhere—from street vendors to pasalubong stores. When dipped in spicy vinegar with garlic and chili, the flavors become even more irresistible. Often shared during gatherings or inuman sessions, this snack brings fun, excitement, and memories of Filipino street-food culture."
-    },
-    {
-      "id": 3,
-      "name": "Dinuguan",
-      "category": "Filipino Dish",
-      "price": 70.00,
-      "photo": "public/foods/dinuguan.jpg",
-      "description": "Savory pork stew cooked in rich, spiced blood sauce—best enjoyed with puto. Dinuguan offers a deep, hearty flavor created through slow simmering of pork, garlic, chili, and vinegar. Its thick, silky sauce and tender meat make it a comforting favorite during fiestas and family gatherings. While bold in appearance, the dish is beloved for its unique, flavorful, and authentic taste that highlights Filipino culinary creativity."
-    },
-    {
-      "id": 4,
-      "name": "Halo-Halo",
-      "category": "Dessert",
-      "price": 30.00,
-      "photo": "public/foods/halo-halo.jpg",
-      "description": "A refreshing mix of crushed ice, milk, sweet beans, jelly, and leche flan—perfect for hot days. Halo-halo is a vibrant dessert filled with layers of colorful ingredients, each adding a unique flavor and texture. From the chewiness of nata de coco to the smoothness of ube halaya, every scoop is a delightful surprise. Topped with leche flan and served cold, it is a nostalgic summer treat enjoyed in beaches, fiestas, and family outings across the Philippines."
-    },
-    {
-      "id": 5,
-      "name": "Menudo",
-      "category": "Filipino Dish",
-      "price": 70.00,
-      "photo": "public/foods/menudo.jpg",
-      "description": "A hearty stew of pork, potatoes, carrots, and raisins simmered in tomato sauce. Menudo is popularly served during birthdays and celebrations because of its colorful, festive appearance. The savory tomato base is perfectly balanced with the gentle sweetness of raisins, creating a warm and comforting flavor. This dish is a staple in Filipino homes, often prepared for gatherings and special family occasions."
-    },
-    {
-      "id": 6,
-      "name": "Pinakbet",
-      "category": "Filipino Dish",
-      "price": 70.00,
-      "photo": "public/foods/pinakbet.jpg",
-      "description": "A healthy mix of sautéed vegetables flavored with bagoong, a staple Ilocano favorite. Pinakbet combines the freshness of native vegetables like eggplant, okra, squash, and ampalaya, resulting in a wholesome and earthy dish. The bagoong adds a strong savory depth that enhances the natural flavors of the vegetables. This dish represents simple yet nourishing Filipino home cooking, rooted in tradition and regional pride."
-    },
-    {
-      "id": 7,
-      "name": "Sinigang",
-      "category": "Filipino Dish",
-      "price": 70.00,
-      "photo": "public/foods/sinigang.jpg",
-      "description": "A sour tamarind-based soup with tender pork and fresh vegetables—comforting and flavorful. Sinigang is loved for its refreshing asim that awakens the appetite. The broth, made tangy with tamarind, pairs well with vegetables like kangkong, gabi, and radish. Best served hot on rainy days, Sinigang brings warmth and familiarity, making it one of the most comforting Filipino dishes."
-    },
-    {
-      "id": 8,
-      "name": "Sisig",
-      "category": "Pulutan",
-      "price": 70.00,
-      "photo": "public/foods/sisig.jpg",
-      "description": "Sizzling chopped pork seasoned with calamansi, onions, and spices—crispy, savory, and iconic. Served on a hot sizzling plate, Sisig crackles with irresistible aroma and flavor. The combination of crunchy and tender textures, balanced with tangy calamansi and savory spices, makes it a favorite pulutan and main dish. Representing the pride of Pampanga, Sisig has become one of the Philippines' most beloved and recognizable dishes."
-    },
-    {
-      "id": 9,
-      "name": "Turon",
-      "category": "Dessert",
-      "price": 7.00,
-      "photo": "public/foods/turon.jpg",
-      "description": "Crispy fried banana rolls coated in caramelized sugar—a sweet and affordable Filipino snack. Turon is made with ripe saba bananas wrapped in lumpia wrapper and glazed until golden and crunchy. Often sold by street vendors, it is enjoyed by students, workers, and families alike. The sweet aroma of caramelized sugar and the warm, soft banana filling makes Turon a comforting treat perfect for merienda or dessert."
-    }
-  ],
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  getAllPhFoods() {
-    return this.phFoodsList;
-  },
+:root {
+  --primary-color: #2c5530;
+  --secondary-color: #4a7c59;
+  --accent-color: #ff6b35;
+  --text-dark: #2d3436;
+  --text-light: #636e72;
+  --bg-light: #f8f9fa;
+  --white: #ffffff;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
 
-  getPhFoodsById(id) {
-    return this.phFoodsList.find((phFoods) => phFoods.id === parseInt(id));
-  },
+body {
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
 
-  submitApplication(firstName, lastName, email) {
-    console.log(
-      `Foods are received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`
-    );
-    alert(`Application submitted!\nFirst Name: ${firstName}\nLast Name: ${lastName}\nEmail: ${email}`);
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header Styles */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.header-content {
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+  transform: scale(1.05);
+}
+
+.brand-logo {
+  height: 60px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  background: transparent;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+/* Remove white background from logo if present */
+.logo-link img {
+  background: transparent !important;
+}
+
+/* Alternative: if logo has white background, use this */
+@supports (backdrop-filter: blur(10px)) {
+  .brand-logo {
+    background: rgba(255, 255, 255, 0);
   }
-};
+}
 
-// Router
-const Router = {
-  init() {
-    window.addEventListener('hashchange', () => this.handleRoute());
-    this.handleRoute();
-  },
+.brand-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+}
 
-  handleRoute() {
-    const hash = window.location.hash.slice(1) || '/';
-    const content = document.getElementById('app-content');
+/* Main Content */
+main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0 2rem 4rem 2rem;
+}
 
-    if (hash === '/') {
-      this.renderHome(content);
-    } else if (hash.startsWith('/details/')) {
-      const id = hash.split('/details/')[1];
-      this.renderDetails(content, id);
-    } else {
-      content.innerHTML = `
-        <article style="text-align: center; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.95); border-radius: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);">
-          <h1 style="font-size: 3rem; color: #2d3436; margin-bottom: 1rem;">404</h1>
-          <p style="font-size: 1.2rem; color: #636e72; margin-bottom: 2rem;">Page not found</p>
-          <a href="#/" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #ff6b35, #ff8c5a); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">Go back home</a>
-        </article>
-      `;
-    }
-  },
+.content {
+  width: 100%;
+}
 
-  renderHome(container) {
-    let filteredFoodsList = FoodingService.getAllPhFoods();
+/* Search Section */
+.search-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 3rem;
+}
 
-    container.innerHTML = `
-      <section class="search-section">
-        <form id="filter-form">
-          <input type="text" id="filter-input" placeholder="Search by category (e.g., Filipino Dish, Dessert, Pulutan)" />
-          <button class="primary" type="button" id="search-btn">Search</button>
-        </form>
-      </section>
-      <section class="results" id="results">
-        ${this.renderFoodList(filteredFoodsList)}
-      </section>
-    `;
+.search-section form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-    // Add event listeners
-    const searchBtn = document.getElementById('search-btn');
-    const filterInput = document.getElementById('filter-input');
+.search-section input[type="text"] {
+  flex: 1;
+  min-width: 400px;
+  padding: 1.25rem 1.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: var(--white);
+}
 
-    searchBtn.addEventListener('click', () => {
-      const text = filterInput.value;
-      if (!text) {
-        filteredFoodsList = FoodingService.getAllPhFoods();
-      } else {
-        filteredFoodsList = FoodingService.getAllPhFoods().filter((phFoods) =>
-          phFoods?.category.toLowerCase().includes(text.toLowerCase())
-        );
-      }
-      document.getElementById('results').innerHTML = this.renderFoodList(filteredFoodsList);
-    });
+.search-section input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  transform: translateY(-2px);
+}
 
-    filterInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        searchBtn.click();
-      }
-    });
-  },
+.search-section button {
+  padding: 1.25rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+}
 
-  renderFoodList(foods) {
-    return foods.map(food => `
-      <section class="listing">
-        <img
-          class="listing-photo"
-          src="${food.photo}"
-          alt="Exterior photo of ${food.name}"
-          crossorigin
-        />
-        <h2 class="listing-heading">${food.name}</h2>
-        <p class="listing-location">${food.category}</p>
-        <a href="#/details/${food.id}">Learn More</a>
-      </section>
-    `).join('');
-  },
+.search-section button.primary {
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5a);
+  color: var(--white);
+}
 
-  renderDetails(container, id) {
-    const phFoods = FoodingService.getPhFoodsById(id);
+.search-section button.secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-dark);
+  border: 2px solid #e0e0e0;
+}
 
-    if (!phFoods) {
-      container.innerHTML = `
-        <article style="text-align: center; padding: 4rem 2rem;">
-          <h1 style="font-size: 3rem; color: var(--text-dark); margin-bottom: 1rem;">Food Not Found</h1>
-          <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem;">The food item you're looking for doesn't exist.</p>
-          <a href="#/" style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent-color), #ff8c5a); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; box-shadow: var(--shadow-md);">Go back home</a>
-        </article>
-      `;
-      return;
-    }
+.search-section button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #ff8c5a, var(--accent-color));
+}
 
-    container.innerHTML = `
-      <article>
-        <img
-          class="listing-photo"
-          src="${phFoods.photo}"
-          alt="Exterior photo of ${phFoods.name}"
-          crossorigin
-        />
-        <section class="listing-description">
-          <h2 class="listing-heading">${phFoods.name}</h2>
-          <p class="listing-location">${phFoods.category}</p>
-        </section>
-        <section class="listing-features">
-          <h2 class="section-heading">About this food</h2>
-          <ul>
-            <li>Price: ₱${phFoods.price.toFixed(2)}</li>
-            <li>${phFoods.description}</li>
-          </ul>
-        </section>
-        <section class="listing-apply">
-          <h2 class="section-heading">Apply now to order here</h2>
-          <form id="apply-form">
-            <label for="first-name">First Name</label>
-            <input id="first-name" type="text" name="firstName" required />
-            <label for="last-name">Last Name</label>
-            <input id="last-name" type="text" name="lastName" required />
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" required />
-            <button type="submit" class="primary">Apply now</button>
-          </form>
-        </section>
-      </article>
-    `;
+.search-section button.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-color);
+  background: var(--white);
+}
 
-    // Add form submit handler
-    const form = document.getElementById('apply-form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      FoodingService.submitApplication(
-        formData.get('firstName') || '',
-        formData.get('lastName') || '',
-        formData.get('email') || ''
-      );
-      form.reset();
-    });
+.search-section button:active {
+  transform: translateY(0);
+}
+
+/* Results Grid */
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Food Card Styles */
+.listing {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.listing:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.listing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff8c5a, #ffa366);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.listing:hover::before {
+  opacity: 1;
+}
+
+.listing-photo {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.listing:hover .listing-photo {
+  transform: scale(1.05);
+}
+
+.listing-heading {
+  color: var(--text-dark);
+  padding: 1.25rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.listing-location {
+  padding: 0 1.5rem 1rem 1.5rem;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.listing-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+section.listing a,
+.listing-order-btn {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+.listing-order-btn {
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5a);
+}
+
+section.listing a:hover,
+.listing-order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+section.listing a:hover {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.listing-order-btn:hover {
+  background: linear-gradient(135deg, #ff8c5a, var(--accent-color));
+}
+
+section.listing a::after {
+  content: " →";
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+section.listing a:hover::after {
+  transform: translateX(5px);
+}
+
+/* Details Page Styles */
+article {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: var(--shadow-xl);
+  margin-top: 2rem;
+}
+
+article .listing-photo {
+  height: 500px;
+  width: 45%;
+  object-fit: cover;
+  border-radius: 20px;
+  float: right;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.listing-description {
+  margin-bottom: 2rem;
+  clear: right;
+}
+
+.listing-description .listing-heading {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.listing-description .listing-location {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.listing-features {
+  margin: 3rem 0;
+  clear: both;
+}
+
+.listing-features > .section-heading {
+  color: var(--text-dark);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.listing-features > .section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff8c5a);
+  border-radius: 2px;
+}
+
+.listing-features li {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.listing-features li::before {
+  content: '🍽️';
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.listing-features li:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+}
+
+.listing-features li:first-child::before {
+  content: '💰';
+}
+
+.listing-features ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.listing-apply {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e0e0e0;
+  clear: both;
+}
+
+.listing-apply .section-heading {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+label {
+  color: var(--text-dark);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: var(--white);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.listing-apply button {
+  margin-top: 1.5rem;
+  padding: 1rem 3rem;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5a);
+  color: var(--white);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.listing-apply button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #ff8c5a, var(--accent-color));
+}
+
+.listing-apply button:active {
+  transform: translateY(0);
+}
+
+/* Order Button Styles */
+.order-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e0e0e0;
+  clear: both;
+}
+
+.order-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn-order,
+.btn-add-cart,
+.btn-back {
+  padding: 1.25rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-order {
+  background: linear-gradient(135deg, var(--accent-color), #ff8c5a);
+  color: var(--white);
+  flex: 1;
+  min-width: 200px;
+}
+
+.btn-order:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #ff8c5a, var(--accent-color));
+}
+
+.btn-add-cart {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  flex: 1;
+  min-width: 200px;
+}
+
+.btn-add-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-dark);
+  border: 2px solid #e0e0e0;
+  flex: 0 0 auto;
+}
+
+.btn-back:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-color);
+  background: var(--white);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  article .listing-photo {
+    width: 100%;
+    height: 400px;
+    float: none;
+    margin-left: 0;
+    margin-bottom: 2rem;
   }
-};
 
-// Initialize the app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  Router.init();
-});
+  .listing-description .listing-heading {
+    font-size: 2.5rem;
+  }
+}
 
+@media (max-width: 768px) {
+  main {
+    padding: 0 1rem 2rem 1rem;
+  }
+
+  .header-content {
+    padding: 0 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .search-section input[type="text"] {
+    min-width: 100%;
+  }
+
+  .brand-text {
+    font-size: 1.4rem;
+  }
+
+  .brand-logo {
+    height: 50px;
+  }
+
+  .results {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .search-section {
+    padding: 1.5rem;
+  }
+
+  .search-section form {
+    flex-direction: column;
+  }
+
+  .search-section input[type="text"] {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .search-section button {
+    width: 100%;
+  }
+
+  article {
+    padding: 2rem 1.5rem;
+  }
+
+  .listing-description .listing-heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .results {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+  }
+
+  .brand-logo {
+    height: 40px;
+  }
+
+  article {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content > * {
+  animation: fadeIn 0.5s ease-out;
+}
