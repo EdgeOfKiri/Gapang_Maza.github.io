@@ -428,7 +428,7 @@ article .listing-photo {
   font-size: 3.5rem;
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   padding-top: 0;
   color: var(--text-dark);
   line-height: 1.2;
@@ -442,13 +442,15 @@ article .listing-photo {
   font-size: 1.25rem;
   color: var(--text-light);
   padding: 0;
+  margin-top: 0;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
 }
 
 .listing-features {
-  margin: 2rem 0;
+  margin: 1rem 0 0 0;
   clear: right;
   width: calc(55% - 2rem);
 }
@@ -456,7 +458,8 @@ article .listing-photo {
 .listing-features > .section-heading {
   color: var(--text-dark);
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
   font-weight: 600;
   position: relative;
   padding-bottom: 0.5rem;
@@ -506,8 +509,8 @@ article .listing-photo {
 }
 
 .listing-apply {
-  margin: 2rem 0 0 0;
-  padding-top: 2rem;
+  margin: 1.5rem 0 0 0;
+  padding-top: 1.5rem;
   border-top: 2px solid #e0e0e0;
   clear: right;
   width: calc(55% - 2rem);
@@ -580,8 +583,8 @@ input[type="email"]:focus {
 
 /* Order Button Styles */
 .order-section {
-  margin: 2rem 0 0 0;
-  padding-top: 2rem;
+  margin: 1.5rem 0 0 0;
+  padding-top: 1.5rem;
   border-top: 2px solid #e0e0e0;
   clear: right;
   width: calc(55% - 2rem);
