@@ -24,7 +24,7 @@ body {
     Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 25%, #ff6b35 50%, #feca57 75%, #ff9a56 100%);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   min-height: 100vh;
@@ -401,7 +401,7 @@ article {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 24px;
-  padding: 3rem 3rem 3rem 3rem;
+  padding: 0 3rem 3rem 3rem;
   box-shadow: var(--shadow-xl);
   margin-top: 2rem;
   overflow: hidden;
@@ -414,12 +414,12 @@ article .listing-photo {
   object-fit: cover;
   border-radius: 20px;
   float: right;
-  margin: 0 0 0 2rem;
+  margin: 3rem 0 0 2rem;
   box-shadow: var(--shadow-lg);
 }
 
 .listing-description {
-  margin: 0;
+  margin: 3rem 0 0 0;
   padding: 0;
   width: calc(55% - 2rem);
 }
